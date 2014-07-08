@@ -25,7 +25,7 @@ The REST API is documented in the "API" link off the dashboard itself.
 
 Weald is implemented using ASP.NET MVC 4 and the Razor view engine. The dashboard is "dog fooding" the REST API by calling it to populate the grid and charts it displays.
 
-See the OTHER_LICENSES file for a listing of other tools and libraries used to create Weald.
+See the [OTHER_LICENSES](/Weald/OTHER_LICENSES) file for a listing of other tools and libraries used to create Weald.
 
 ## Installation
 
