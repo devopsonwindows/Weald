@@ -19,7 +19,7 @@ The REST API is documented in the "API" link off the dashboard itself.
 
 ### API Help page, continued
 
-![Weald API Help Page, continued](/docs/api1.png?raw=true "Weald API Help Page, continued")
+![Weald API Help Page, continued](/docs/api2.png?raw=true "Weald API Help Page, continued")
 
 ## Implementation
 
