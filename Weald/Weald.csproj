@@ -163,7 +163,6 @@
     <Compile Include="Service\IProvideVisualSvnServerInfo.cs" />
     <Compile Include="Service\IProvideWebConfiguration.cs" />
     <Compile Include="Service\IProvideWindowsServiceInfo.cs" />
-    <None Include="Properties\PublishProfiles\test.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\XmlDocument.xml">
