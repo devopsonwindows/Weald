@@ -1,0 +1,53 @@
+﻿<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="#Top">Overview</a></li>
+        <li><a href="#Summary">Summary</a></li>
+        <li><a href="#Details">Details</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header">Subversion repositories on @Environment.MachineName</h1>
+      <h2 class="sub-header" id="Summary">Summary</h2>
+      <div class="row placeholders">
+        <div class="col-xs-6 col-sm-3 placeholder">
+          <img src="~/Images/database.png" class="img-responsive" alt="Biggest repo in terms of disk space">
+          <h4 id="summary-topspace"></h4>
+          <span class="text-muted">uses the most disk space</span>
+        </div>
+        <div class="col-xs-6 col-sm-3 placeholder">
+          <img src="~/Images/revisions.png" class="img-responsive" alt="Biggest repo in terms of number of revisions">
+          <h4 id="summary-toprevisions"></h4>
+          <span class="text-muted">has the most revisions</span>
+        </div>
+        <div class="col-xs-6 col-sm-3 placeholder">
+          <canvas id="diskUsageChart" width="200" height="200"></canvas>
+          <h4>Top 10 - most disk usage</h4>
+          <span class="text-muted"></span>
+        </div>
+        <div class="col-xs-6 col-sm-3 placeholder">
+          <canvas id="revisionChart" width="200" height="200"></canvas>
+          <h4>Top 10 - most revisions</h4>
+          <span class="text-muted"></span>
+        </div>
+      </div>
+      <h2 class="sub-header" id="Details">Details</h2>
+      <div class="row">
+        <table id="reposTable">
+          <thead>
+            <tr>
+              <th>Repository</th>
+              <th>Size</th>
+              <th>Latest Revision Number</th>
+              <th>Latest Revision Username</th>
+              <th>Latest Revision Timestamp</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

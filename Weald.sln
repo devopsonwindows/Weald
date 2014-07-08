@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weald", "Weald\Weald.csproj", "{446F7DB1-0851-4CBF-869B-1149F0C02CBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weald.Tests", "Weald.Tests\Weald.Tests.csproj", "{8158E9A9-AF25-438F-A36A-2587567B335C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{446F7DB1-0851-4CBF-869B-1149F0C02CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446F7DB1-0851-4CBF-869B-1149F0C02CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446F7DB1-0851-4CBF-869B-1149F0C02CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446F7DB1-0851-4CBF-869B-1149F0C02CBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8158E9A9-AF25-438F-A36A-2587567B335C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8158E9A9-AF25-438F-A36A-2587567B335C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8158E9A9-AF25-438F-A36A-2587567B335C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8158E9A9-AF25-438F-A36A-2587567B335C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

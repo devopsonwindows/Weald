@@ -1,0 +1,22 @@
+﻿
+Weald is in no way affiliated with or endorsed by VisualSVN - http://www.visualsvn.com/server/.
+  We just think it's a really awesome way of serving SVN!
+
+The forest icon was made by Freepik from http://www.flaticon.com/free-icon/trees-forest-with-leaf-shape_32502.
+
+Weald was built on ASP.NET MVC4's Web API
+- http://www.asp.net/mvc/mvc4
+- http://aspnetwebstack.codeplex.com/ (Apache License 2.0)
+
+Weald also makes extensive use of open source projects. They are also awesome:
+- Apache log4net - http://logging.apache.org/log4net/ (Apache License 2.0)
+- Castle Windsor Container - http://www.castleproject.org/ (Apache License 2.0)
+- Chart.js - http://www.chartjs.org/ (MIT License)
+- DataTables - http://www.datatables.net/ (MIT License)
+- jQuery - http://jquery.com/ (MIT License)
+- Microsoft WebGrease - http://webgrease.codeplex.com/ (Apache License 2.0)
+- Moment.js - http://momentjs.com/ (MIT License)
+- Moq - https://github.com/Moq/moq4 (BSD License)
+- Newtonsoft.Json - http://james.newtonking.com/json (MIT License)
+- NUnit - http://www.nunit.org/ (zlib License)
+- Twitter Bootstrap - http://getbootstrap.com/ (MIT License)

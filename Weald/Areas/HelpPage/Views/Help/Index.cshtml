@@ -1,0 +1,35 @@
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@model Collection<ApiDescription>
+
+@{
+    var apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor.ControllerName);
+}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="#Introduction">Introduction</a></li>
+        @foreach (var group in apiGroups)
+        {
+          <li><a href="#@group.Key">@group.Key</a></li>
+        }
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header">Weald REST API Help Page</h1>
+      <h2 class="sub-header" id="Introduction">Introduction</h2>
+      <p>
+        These are the same REST APIs powering the Weald <a href="~/">dashboard</a>. They can be used
+        to retrieve metadata about the repositories present on the current SVN server.
+      </p>
+      @foreach (var group in apiGroups)
+      {
+        @Html.DisplayFor(m => group, "ApiGroup")
+      }
+    </div>
+</div>
+@section Scripts {
+    <link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+}
