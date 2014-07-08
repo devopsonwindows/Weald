@@ -3,7 +3,7 @@ Weald
 
 ## Introduction
 
-A dashboard and REST API for SVN repository details for repos hosted on [VisualSVN Server][http://www.visualsvn.com/server/].
+Weald is a dashboard and REST API for SVN repository details for repos hosted on [VisualSVN Server](http://www.visualsvn.com/server/).
 
 The REST API is documented in the "API" link off the dashboard itself.
 
