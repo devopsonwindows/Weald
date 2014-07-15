@@ -61,7 +61,11 @@ Weald logs to C:\ProgramData\Weald\Weald.log by default (it mostly just logs war
 
 #### Update frequency
 
-The dashboard is basically just polling the REST API periodically. This is currently controlled by the setInterval call in Weald/Scripts/weald.js. Out of the box it's 3 seconds (i.e. 3000 milliseconds). This triggers svnlook.exe to run on the SVN server, so based on your server requirements/load you may want to adjust this interval.
+The dashboard is basically just polling the REST API periodically. This is currently controlled by the setInterval call in Weald/Scripts/weald.js. Out of the box it's 3 seconds (i.e. 3000 milliseconds).
+
+#### svnlook frequency
+
+The repository details are obtained by Weald automatically running svnlook on each repo in the background periodically. How frequently it runs svnlook is controlled by the "RepoInfoRefreshInterval" setting in the Web.config file. This setting defaults to 5 minutes out of the box and is specified in [.NET TimeSpan format](http://msdn.microsoft.com/en-us/library/ee372286).
 
 ## TODO
 
