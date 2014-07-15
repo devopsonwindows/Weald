@@ -16,7 +16,9 @@ namespace Weald.Installers
                 Component.For<IProvideVisualSvnServerInfo>().ImplementedBy<VisualSvnServerInfoProvider>(),
                 Component.For<IProvideSvnLook>().ImplementedBy<SvnLookProvider>(),
                 Component.For<IProvideRepositoryInfo>().ImplementedBy<RepositoryInfoProvider>(),
-                Component.For<IProvideWebConfiguration>().ImplementedBy<WebConfigurationProvider>()
+                Component.For<IProvideRepositoryInfoCache>().ImplementedBy<RepositoryInfoCacheProvider>(),
+                Component.For<IProvideWebConfiguration>().ImplementedBy<WebConfigurationProvider>(),
+                Component.For<IRepeatActions>().ImplementedBy<ActionRepeater>()
                 );
         }
     }

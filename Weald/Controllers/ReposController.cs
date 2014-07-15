@@ -8,17 +8,17 @@ namespace Weald.Controllers
 {
     public class ReposController : ApiController
     {
-        private readonly IProvideRepositoryInfo _repositoryInfoProvider;
+        private readonly IProvideRepositoryInfoCache _repositoryInfoCacheProvider;
 
         public ReposController()
-            : this(WebApiApplication.RepostioryInfoProvider)
+            : this(WebApiApplication.RepositoryInfoCacheProvider)
         {
             
         }
 
-        public ReposController(IProvideRepositoryInfo repositoryInfoProvider)
+        public ReposController(IProvideRepositoryInfoCache repositoryInfoCacheProvider)
         {
-            _repositoryInfoProvider = repositoryInfoProvider;
+            _repositoryInfoCacheProvider = repositoryInfoCacheProvider;
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Weald.Controllers
         /// <returns></returns>
         public IEnumerable<RepositoryInfo> Get()
         {
-            return _repositoryInfoProvider.GetAllRepositoryInfos();
+            return _repositoryInfoCacheProvider.GetRepositoryInfos();
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Weald.Controllers
         /// <returns></returns>
         public RepositoryInfo Get(string repoName)
         {
-            return _repositoryInfoProvider.GetRepositoryInfo(repoName);
+            return _repositoryInfoCacheProvider.GetRepositoryInfo(repoName);
         }
     }
 }

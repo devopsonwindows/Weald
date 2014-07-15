@@ -155,6 +155,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\RepositoryInfo.cs" />
+    <Compile Include="Service\IProvideRepositoryInfoCache.cs" />
+    <Compile Include="Service\IRepeatActions.cs" />
     <None Include="OTHER_LICENSES" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IProvideRepositoryInfo.cs" />

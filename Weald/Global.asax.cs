@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -18,11 +19,12 @@ namespace Weald
     // Adding help documentation - http://www.asp.net/web-api/overview/creating-web-apis/creating-api-help-pages
     public class WebApiApplication : HttpApplication
     {
-        public static IProvideVisualSvnServerInfo VisualSvnServerInfoProvider;
-        public static IProvideRepositoryInfo RepostioryInfoProvider;
+        public static IProvideRepositoryInfoCache RepositoryInfoCacheProvider;
 
         private static readonly ILog Log = LogManager.GetLogger(typeof (WebApiApplication));
         private static IWindsorContainer _container;
+
+        private readonly CancellationTokenSource _tokenSource = new CancellationTokenSource();
 
         protected void Application_Start()
         {
@@ -38,13 +40,34 @@ namespace Weald
             _container = new WindsorContainer();
             _container.Install(new WealdInstaller());
 
-            VisualSvnServerInfoProvider = _container.Resolve<IProvideVisualSvnServerInfo>();
-            RepostioryInfoProvider = _container.Resolve<IProvideRepositoryInfo>();
+            var visualSvnServerInfoProvider = _container.Resolve<IProvideVisualSvnServerInfo>();
+            RepositoryInfoCacheProvider = _container.Resolve<IProvideRepositoryInfoCache>();
 
-            if (!VisualSvnServerInfoProvider.IsVisualSvnServerInstalled)
+            if (!visualSvnServerInfoProvider.IsVisualSvnServerInstalled)
             {
                 Log.ErrorFormat("VisualSVN Server is not installed on this computer, {0}. " +
                     "Weald functionality will not be available", Environment.MachineName);
+            }
+            else
+            {
+                RepositoryInfoCacheProvider.UpdateAllRepositoryInfos();
+
+                var updateIntervalValue = string.Empty;
+                var updateInterval = new TimeSpan();
+
+                try
+                {
+                    updateIntervalValue = _container.Resolve<IProvideWebConfiguration>().GetValue("RepoInfoRefreshInterval");
+                    updateInterval = TimeSpan.Parse(updateIntervalValue);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(string.Format("The RepoInfoRefreshInterval value {0} in the Web.config is not valid", updateIntervalValue), e);
+                }
+
+                _container.Resolve<IRepeatActions>()
+                          .StartAction(RepositoryInfoCacheProvider.UpdateAllRepositoryInfos, updateInterval,
+                                       _tokenSource.Token);
             }
 
             Log.Info("Finished Weald startup");
@@ -53,6 +76,12 @@ namespace Weald
         protected void Application_End()
         {
             Log.Info("Shutting down Weald");
+
+            if (_tokenSource != null)
+            {
+                _tokenSource.Cancel();
+            }
+
             _container.Dispose();
             Log.Info("Finished Weald shutdown");
         }
