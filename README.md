@@ -38,7 +38,8 @@ See the [OTHER_LICENSES](/Weald/OTHER_LICENSES) file for a listing of other tool
 
 Currently Weald expects to be installed on the same host as your VisualSVN Server. This means you need IIS enabled/installed on your SVN server.
 
-Assuming you already have IIS up and running, create a directory for the Weald files, e.g. C:\inetpub\Weald. Then build Weald in Visual Studio (hopefully we'll have binary releases soon) and publish the site to that directory.
+Assuming you already have IIS up and running, [download our latest release](/releases) and unzip the Weald directory contained in the release zip file into your C:\inetpub directory creating the path C:\inetpub\Weald.
+
 
 Next, create an Application Pool in IIS named Weald using at least .NET 4.0 as the Framework version, with "Integrated" for the "Managed pipline mode" setting. The other caveat is that the Weald Application Pool will need to run as the Local System account or some user with:
 * read permissions to your VisualSVN Server configuration file
@@ -69,6 +70,5 @@ The repository details are obtained by Weald automatically running svnlook on ea
 
 ## TODO
 
-* Publish binary releases
 * General unhandled exception "handler"
 * Dynamically discover CNAMEs
