@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="BuildEntryPoint" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <EntryPointProjectPath>Weald</EntryPointProjectPath>
+    <ProjectOutputToPublish>$(EntryPointProjectPath)\Weald.csproj</ProjectOutputToPublish>
+    <BuildVersionTemplateAssemblyInfoFile>$(EntryPointProjectPath)\Properties\AssemblyInfo.cs</BuildVersionTemplateAssemblyInfoFile>
+
+    <BuildSystemPath>buildSystem</BuildSystemPath>
+  </PropertyGroup>
+
+  <Import Project="$(BuildSystemPath)\Dow.Build.targets"/>
+</Project>
