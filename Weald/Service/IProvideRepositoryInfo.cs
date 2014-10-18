@@ -75,7 +75,7 @@ namespace Weald.Service
             return CreateRepositoryInfo(repoName, repoStoragePath);
         }
 
-        private static long GetRepoSizeInBytes(string repoStoragePath)
+        private static double GetRepoSizeInBytes(string repoStoragePath)
         {
             return new FileSystemObject().GetFolder(repoStoragePath).Size;
         }

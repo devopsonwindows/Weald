@@ -8,7 +8,7 @@ namespace Weald.Models
         public int LatestRevision;
         public string LatestChangeUsername;
         public DateTime LatestChangeTimestamp;
-        public long SizeInBytes;
+        public double SizeInBytes;
         public string Url;
     }
 }
