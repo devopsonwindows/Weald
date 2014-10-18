@@ -92,12 +92,14 @@ function drawCharts() {
         return;
     }
 
+    var dataArray = data.toArray();
+
     data.sort(function (a, b) { return (a.SizeInBytes < b.SizeInBytes) ? 1 : ((b.SizeInBytes < a.SizeInBytes) ? -1 : 0); });
 
-    var diskUsageSlice = data;
+    var diskUsageSlice = dataArray;
 
     if (data.length > topEntries) {
-        diskUsageSlice = data.slice(0, topEntries);
+        diskUsageSlice = dataArray.slice(0, topEntries);
     }
 
     var diskUsageChartData = [];
@@ -110,12 +112,12 @@ function drawCharts() {
         });
     }
 
-    data.sort(function (a, b) { return (a.LatestRevision > b.LatestRevision) ? 1 : ((b.LatestRevision > a.LatestRevision) ? -1 : 0); });
+    data.sort(function (a, b) { return (a.LatestRevision < b.LatestRevision) ? 1 : ((b.LatestRevision < a.LatestRevision) ? -1 : 0); });
 
-    var revisionsSlice = data;
+    var revisionsSlice = dataArray;
 
     if (data.length > topEntries) {
-        revisionsSlice = data.slice(0, topEntries);
+        revisionsSlice = dataArray.slice(0, topEntries);
     }
 
     var revisionsChartData = [];
@@ -129,13 +131,13 @@ function drawCharts() {
     }
 
     var ctx = $("#diskUsageChart").get(0).getContext("2d");
-    diskUsageChart = new Chart(ctx).Doughnut(diskUsageChartData, {
+    diskUsageChart = new Chart(ctx).Pie(diskUsageChartData, {
         'animation': false,
         'tooltipTemplate': "<%if (label){%><%=label%> <%}%>",
     });
     
     ctx = $("#revisionChart").get(0).getContext("2d");
-    revisionsChart = new Chart(ctx).PolarArea(revisionsChartData, {
+    revisionsChart = new Chart(ctx).Doughnut(revisionsChartData, {
         'animation': false,
         'tooltipTemplate': "<%if (label){%><%=label%> <%}%>",
     });
