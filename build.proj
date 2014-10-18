@@ -4,6 +4,7 @@
     <EntryPointProjectPath>Weald</EntryPointProjectPath>
     <ProjectOutputToPublish>$(EntryPointProjectPath)\Weald.csproj</ProjectOutputToPublish>
     <BuildVersionTemplateAssemblyInfoFile>$(EntryPointProjectPath)\Properties\AssemblyInfo.cs</BuildVersionTemplateAssemblyInfoFile>
+    <PublishWebProject>true</PublishWebProject>
 
     <BuildSystemPath>buildSystem</BuildSystemPath>
   </PropertyGroup>

@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weald.Tests", "Weald.Tests\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2FEBC057-ED20-40D2-BAAA-F338C884C30D}"
 	ProjectSection(SolutionItems) = preProject
+		build.proj = build.proj
 		LICENSE.txt = LICENSE.txt
 		Weald\OTHER_LICENSES = Weald\OTHER_LICENSES
 		README.md = README.md
