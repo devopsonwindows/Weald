@@ -20,6 +20,7 @@ namespace Weald
     public class WebApiApplication : HttpApplication
     {
         public static IProvideRepositoryInfoCache RepositoryInfoCacheProvider;
+        public static string SvnServerHostname = Environment.MachineName;
 
         private static readonly ILog Log = LogManager.GetLogger(typeof (WebApiApplication));
         private static IWindsorContainer _container;
@@ -57,7 +58,13 @@ namespace Weald
 
                 try
                 {
-                    updateIntervalValue = _container.Resolve<IProvideWebConfiguration>().GetValue("RepoInfoRefreshInterval");
+                    var configProvider = _container.Resolve<IProvideWebConfiguration>();
+                    if (!string.IsNullOrEmpty(configProvider.GetValue("SvnServerAlias")))
+                    {
+                        SvnServerHostname = configProvider.GetValue("SvnServerAlias");
+                    }
+
+                    updateIntervalValue = configProvider.GetValue("RepoInfoRefreshInterval");
                     updateInterval = TimeSpan.Parse(updateIntervalValue);
                 }
                 catch (Exception e)

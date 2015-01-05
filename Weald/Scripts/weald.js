@@ -7,7 +7,7 @@ $(document).ready(function () {
     $.ajaxSetup({ cache: false });
 
     reposTable = $("#reposTable");
-    
+
     reposTable.on('init.dt', function () {
         getBigRepoDetails();
         drawCharts();
@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     reposTable.on('xhr.dt', function () {
         getBigRepoDetails();
-        
+
         if (diskUsageChart != null) {
             diskUsageChart.destroy();
         }
@@ -26,6 +26,7 @@ $(document).ready(function () {
     });
 
     dataTable = reposTable.dataTable({
+        'deferRender': true,
         'paging': false,
         'stateSave': true,
         'ajax': {
@@ -45,13 +46,13 @@ $(document).ready(function () {
                 'render': function (data, type, row) {
                     return "<a href=\"" + row.Url + "\" target=\"_blank\">" + data + "</a>";
                 },
-            }
+            },
         ],
         'columns': [
             { 'data': 'Name' },
             {
                 'data': 'SizeInBytes',
-                'type': 'string',
+                'type': 'file-size',
                 'render': function(data) {
                     return formatByteSize(data);
                 }
@@ -87,14 +88,14 @@ var colors = ['#F15854', '#DECF3F', '#B276B2', '#B2912F', '#F17CB0', '#60BD68', 
 function drawCharts() {
     var topEntries = 10;
     var data = dataTable.api().data();
-    
+
     if (data == null) {
         return;
     }
 
     var dataArray = data.toArray();
 
-    data.sort(function (a, b) { return (a.SizeInBytes < b.SizeInBytes) ? 1 : ((b.SizeInBytes < a.SizeInBytes) ? -1 : 0); });
+    dataArray.sort(function (a, b) { return (a.SizeInBytes < b.SizeInBytes) ? 1 : ((b.SizeInBytes < a.SizeInBytes) ? -1 : 0); });
 
     var diskUsageSlice = dataArray;
 
@@ -112,7 +113,7 @@ function drawCharts() {
         });
     }
 
-    data.sort(function (a, b) { return (a.LatestRevision < b.LatestRevision) ? 1 : ((b.LatestRevision < a.LatestRevision) ? -1 : 0); });
+    dataArray.sort(function (a, b) { return (a.LatestRevision < b.LatestRevision) ? 1 : ((b.LatestRevision < a.LatestRevision) ? -1 : 0); });
 
     var revisionsSlice = dataArray;
 
@@ -135,7 +136,7 @@ function drawCharts() {
         'animation': false,
         'tooltipTemplate': "<%if (label){%><%=label%> <%}%>",
     });
-    
+
     ctx = $("#revisionChart").get(0).getContext("2d");
     revisionsChart = new Chart(ctx).Doughnut(revisionsChartData, {
         'animation': false,
@@ -171,7 +172,7 @@ function getBigRepoDetails() {
             largestSizeRepo = data[i];
         }
     }
-    
+
     if (largestRevisionRepo != null) {
         $('#summary-toprevisions').text(largestRevisionRepo.Name);
     } else {
@@ -248,3 +249,22 @@ jQuery.fn.dataTableExt.oApi.fnReloadAjax = function (oSettings, sNewSource, fnCa
         }
     }, oSettings);
 };
+
+jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+    "file-size-pre": function (a) {
+        var x = a.substring(0, a.length - 2);
+ 
+        var x_unit = (a.substring(a.length - 2, a.length) == "MB" ?
+            1000 : (a.substring(a.length - 2, a.length) == "GB" ? 1000000 : 1));
+ 
+        return parseInt(x * x_unit, 10);
+    },
+ 
+    "file-size-asc": function (a, b) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+ 
+    "file-size-desc": function (a, b) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    }
+});
