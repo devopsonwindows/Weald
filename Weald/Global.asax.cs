@@ -61,7 +61,7 @@ namespace Weald
                     var configProvider = _container.Resolve<IProvideWebConfiguration>();
                     if (!string.IsNullOrEmpty(configProvider.GetValue("SvnServerAlias")))
                     {
-                        SvnServerHostname = configProvider.GetValue("SvnServerAlias");
+                        SvnServerHostname = configProvider.GetValue("SvnServerAlias").ToUpperInvariant();
                     }
 
                     updateIntervalValue = configProvider.GetValue("RepoInfoRefreshInterval");
